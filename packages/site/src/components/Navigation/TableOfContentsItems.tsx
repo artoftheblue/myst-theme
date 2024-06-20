@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import * as Collapsible from '@radix-ui/react-collapsible';
 import type { Heading } from '@myst-theme/common';
 import { useBaseurl, useNavLinkProvider, useNavOpen, withBaseurl } from '@myst-theme/providers';
-import { useLocation, useNavigation } from '@remix-run/react';
+import { useLocation, useNavigation } from 'react-router';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 
 type NestedHeading = Heading & { id: string; children: NestedHeading[] };

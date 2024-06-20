@@ -8,16 +8,16 @@ import {
 import Page from './$';
 import { ArticlePageAndNavigation } from '../components/ArticlePageAndNavigation';
 import { getConfig, getPage } from '../utils/loaders.server';
-import type { LoaderFunction, V2_MetaFunction } from '@remix-run/node';
-import { redirect } from '@remix-run/node';
+import type { LoaderFunction, MetaFunction } from 'react-router';
+import { redirect } from 'react-router';
 import { SiteManifest } from 'myst-config';
 import { getProject } from '@myst-theme/common';
 export { links } from './$';
-import { useRouteError, isRouteErrorResponse } from '@remix-run/react';
+import { useRouteError, isRouteErrorResponse } from 'react-router';
 
 type ManifestProject = Required<SiteManifest>['projects'][0];
 
-export const meta: V2_MetaFunction<typeof loader> = ({ data, location }) => {
+export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
   if (!data) return [];
 
   const config: SiteManifest = data.config;

@@ -1,10 +1,5 @@
 import { getProject, isFlatSite, type PageLoader } from '@myst-theme/common';
-import {
-  json,
-  type LinksFunction,
-  type LoaderFunction,
-  type V2_MetaFunction,
-} from '@remix-run/node';
+import { json, type LinksFunction, type LoaderFunction, type MetaFunction } from 'react-router';
 import {
   getMetaTagsForArticle,
   KatexCSS,
@@ -12,18 +7,18 @@ import {
   ErrorUnhandled,
 } from '@myst-theme/site';
 import { getConfig, getPage } from '~/utils/loaders.server';
-import { useLoaderData } from '@remix-run/react';
+import { useLoaderData } from 'react-router';
 import type { SiteManifest } from 'myst-config';
 import { ArticlePageAndNavigation } from '../components/ArticlePageAndNavigation';
 import { ArticlePage } from '../components/ArticlePage';
 import { ComputeOptionsProvider } from '@myst-theme/jupyter';
 import { ProjectProvider, useBaseurl } from '@myst-theme/providers';
 import { ThebeLoaderAndServer } from '@myst-theme/jupyter';
-import { useRouteError, isRouteErrorResponse } from '@remix-run/react';
+import { useRouteError, isRouteErrorResponse } from 'react-router';
 
 type ManifestProject = Required<SiteManifest>['projects'][0];
 
-export const meta: V2_MetaFunction<typeof loader> = ({ data, matches, location }) => {
+export const meta: MetaFunction<typeof loader> = ({ data, matches, location }) => {
   if (!data) return [];
 
   const config: SiteManifest = data.config;
@@ -67,7 +62,7 @@ export default function Page() {
   // const { container, outline } = useOutlineHeight();
   // const { hide_outline } = (article.frontmatter as any)?.options ?? {};
   const baseurl = useBaseurl();
-  const { page: article } = useLoaderData() as { page: PageLoader };
+  const { page: article } = useLoaderData<typeof loader>();
 
   return (
     <ArticlePageAndNavigation>
